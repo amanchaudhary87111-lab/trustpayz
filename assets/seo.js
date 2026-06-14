@@ -23,14 +23,21 @@
     "areaServed": [
       { "@type": "City", "name": "Ghaziabad" },
       { "@type": "City", "name": "Noida" },
-      { "@type": "City", "name": "Delhi" },
       { "@type": "City", "name": "Greater Noida" },
+      { "@type": "City", "name": "Noida Extension" },
+      { "@type": "City", "name": "Delhi" },
+      { "@type": "City", "name": "Delhi NCR" },
       { "@type": "City", "name": "Lucknow" },
-      { "@type": "City", "name": "Indirapuram" },
-      { "@type": "City", "name": "Vaishali" },
-      { "@type": "City", "name": "Vasundhara" },
       { "@type": "City", "name": "Faridabad" },
-      { "@type": "City", "name": "Gurugram" }
+      { "@type": "City", "name": "Gurugram" },
+      { "@type": "Place", "name": "Indirapuram" },
+      { "@type": "Place", "name": "Vaishali" },
+      { "@type": "Place", "name": "Vasundhara" },
+      { "@type": "Place", "name": "Crossing Republik" },
+      { "@type": "Place", "name": "Raj Nagar" },
+      { "@type": "Place", "name": "Kaushambi" },
+      { "@type": "Place", "name": "Sector 62 Noida" },
+      { "@type": "Place", "name": "Sector 18 Noida" }
     ],
     "location": [
       {
@@ -218,8 +225,60 @@
     };
   }
 
+
+  /* ── ORGANIZATION / BRAND SCHEMA (tells Google TrustPayZ = official brand) ── */
+  const organization = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "TrustPayZ",
+    "legalName": "TrustPayZ",
+    "alternateName": ["Trust PayZ", "TrustPayZ Ghaziabad", "TrustPayZ Credit Card Service"],
+    "url": "https://trustpayz.in",
+    "logo": "https://trustpayz.in/assets/logo.png",
+    "image": "https://trustpayz.in/assets/logo.png",
+    "description": "TrustPayZ is a credit card payment service in Ghaziabad and Delhi NCR offering credit card to bank transfer, card to card transfer, credit card bill payment and instant money. POS machine swipe and home service available.",
+    "slogan": "Short on funds? We'll pay your card bills.",
+    "telephone": "+919911312139",
+    "email": "",
+    "foundingDate": "2026",
+    "areaServed": ["Ghaziabad", "Noida", "Greater Noida", "Delhi NCR", "Lucknow", "Faridabad", "Gurugram"],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Ansal Tanushree, Near Mahagunpuram, Indian Oil CNG Station, Mehrauli, NH24",
+      "addressLocality": "Ghaziabad",
+      "addressRegion": "Uttar Pradesh",
+      "postalCode": "201010",
+      "addressCountry": "IN"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+919911312139",
+      "contactType": "customer service",
+      "availableLanguage": ["Hindi", "English"],
+      "areaServed": "IN"
+    },
+    "sameAs": [
+      "https://wa.me/919911312139"
+    ]
+  };
+
+  /* ── WEBSITE schema with SearchAction (helps brand box in Google) ── */
+  const website = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "TrustPayZ",
+    "alternateName": "TrustPayZ Ghaziabad",
+    "url": "https://trustpayz.in",
+    "description": "Credit card to bank transfer, card to card transfer, credit card bill payment and instant money in Ghaziabad and Delhi NCR.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "TrustPayZ",
+      "logo": "https://trustpayz.in/assets/logo.png"
+    }
+  };
+
   /* ── INJECT ALL SCHEMAS ── */
-  [localBusiness, faq, breadcrumb].filter(Boolean).forEach(schema => {
+  [organization, website, localBusiness, faq, breadcrumb].filter(Boolean).forEach(schema => {
     const s = document.createElement("script");
     s.type = "application/ld+json";
     s.textContent = JSON.stringify(schema);
