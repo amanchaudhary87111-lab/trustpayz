@@ -1,0 +1,223 @@
+/* ============================================================
+   TrustPayZ — enhance.css
+   Premium animations & polish layer (loads after styles.css)
+   Adds: gradient shimmer, card lifts, button shine, scroll
+   progress, staggered reveals, glow effects, micro-interactions
+   ============================================================ */
+
+/* ── SCROLL PROGRESS BAR (top of page) ── */
+#scroll-progress {
+  position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+  background: linear-gradient(90deg, var(--gold), var(--gold2), var(--teal));
+  z-index: 200; transition: width .1s ease-out;
+  box-shadow: 0 0 10px rgba(201,168,76,.5);
+}
+
+/* ── ANIMATED GRADIENT on hero headline highlight ── */
+.hl {
+  background: linear-gradient(90deg, #E8C96A 0%, #F5DD8F 25%, #C9A84C 50%, #F5DD8F 75%, #E8C96A 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s linear infinite;
+}
+@keyframes shimmer {
+  to { background-position: 200% center; }
+}
+
+/* ── BUTTON SHINE SWEEP on hover ── */
+.btn { position: relative; overflow: hidden; }
+.btn::after {
+  content: ""; position: absolute; top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,.35), transparent);
+  transition: left .6s ease;
+}
+.btn:hover::after { left: 100%; }
+
+/* ── PRIMARY BUTTON pulse glow ── */
+.btn-primary {
+  box-shadow: 0 4px 14px rgba(13,43,94,0.18);
+}
+.hero-cta .btn-primary, .nav-act .btn-primary {
+  animation: gentlePulse 2.6s ease-in-out infinite;
+}
+@keyframes gentlePulse {
+  0%, 100% { box-shadow: 0 4px 14px rgba(13,43,94,0.18); }
+  50% { box-shadow: 0 6px 22px rgba(201,168,76,0.35); }
+}
+
+/* ── ENHANCED CARD HOVER (services, why, reviews) ── */
+.scard, .wcard, .stp, .acard {
+  transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease, border-color .35s ease;
+  will-change: transform;
+}
+.scard:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 18px 40px rgba(13,43,94,0.16);
+}
+.wcard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 36px rgba(13,43,94,0.14);
+  border-color: var(--gold);
+}
+.acard:hover {
+  transform: translateY(-5px) scale(1.04);
+  box-shadow: 0 16px 32px rgba(13,43,94,0.22);
+}
+
+/* ── SERVICE ICON animated on card hover ── */
+.scard .si, .wcard .wi {
+  transition: transform .4s cubic-bezier(.2,.8,.2,1), background .3s ease;
+}
+.scard:hover .si {
+  transform: rotate(-6deg) scale(1.08);
+  background: var(--gold);
+}
+.scard:hover .si svg { stroke: var(--navy); }
+.wcard:hover .wi { transform: scale(1.12); background: rgba(201,168,76,.18); }
+
+/* ── REVIEW CARDS lift + gold edge ── */
+.reviews-grid > div {
+  transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s ease, border-color .35s ease;
+  position: relative;
+}
+.reviews-grid > div:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 36px rgba(13,43,94,0.13);
+  border-color: var(--gold) !important;
+}
+.reviews-grid > div::before {
+  content: "\201C"; position: absolute; top: 6px; right: 16px;
+  font-family: Georgia, serif; font-size: 3rem; color: var(--gold);
+  opacity: .12; line-height: 1;
+}
+
+/* ── STAR rating subtle shimmer ── */
+.reviews-grid > div > div:first-child {
+  animation: starGlow 3s ease-in-out infinite;
+}
+@keyframes starGlow {
+  0%, 100% { filter: drop-shadow(0 0 0 rgba(245,158,11,0)); }
+  50% { filter: drop-shadow(0 0 4px rgba(245,158,11,.4)); }
+}
+
+/* ── STAT NUMBERS glow on reveal ── */
+.statbox .v, .hstat .v, .pc-amt {
+  text-shadow: 0 0 18px rgba(232,201,106,0.15);
+}
+
+/* ── RIBBON items hover ── */
+.ritem {
+  transition: transform .3s ease, background .3s ease;
+  border-radius: 10px;
+}
+.ritem:hover {
+  transform: translateY(-3px);
+  background: rgba(13,43,94,.04);
+}
+.ritem:hover svg { animation: wiggle .5s ease; }
+@keyframes wiggle {
+  0%,100% { transform: rotate(0); }
+  25% { transform: rotate(-8deg); }
+  75% { transform: rotate(8deg); }
+}
+
+/* ── STAGGERED REVEAL (children animate in sequence) ── */
+.rv { transition: opacity .6s cubic-bezier(.2,.8,.2,1), transform .6s cubic-bezier(.2,.8,.2,1); }
+.svc .rv:nth-child(1) { transition-delay: 0s; }
+.svc .rv:nth-child(2) { transition-delay: .08s; }
+.svc .rv:nth-child(3) { transition-delay: .16s; }
+.svc .rv:nth-child(4) { transition-delay: .24s; }
+.svc .rv:nth-child(5) { transition-delay: .32s; }
+.why-grid .rv:nth-child(1) { transition-delay: 0s; }
+.why-grid .rv:nth-child(2) { transition-delay: .1s; }
+.why-grid .rv:nth-child(3) { transition-delay: .2s; }
+.why-grid .rv:nth-child(4) { transition-delay: .3s; }
+
+/* ── FLOATING payment card (hero) gentle bob ── */
+.pcard { animation: floatBob 5s ease-in-out infinite; }
+@keyframes floatBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.float-chip.fc-1 { animation: floatBob 5s ease-in-out infinite .5s; }
+.float-chip.fc-2 { animation: floatBob 5s ease-in-out infinite 1s; }
+
+/* ── BADGE shine for non-utility warning ── */
+.badge {
+  transition: transform .3s ease;
+}
+.badge:hover { transform: scale(1.03); }
+
+/* ── WHATSAPP FLOAT pulse ring ── */
+.wa-float { position: fixed; }
+.wa-float::before {
+  content: ""; position: absolute; inset: 0; border-radius: 50%;
+  background: #25D366; z-index: -1;
+  animation: waPulse 2s ease-out infinite;
+}
+@keyframes waPulse {
+  0% { transform: scale(1); opacity: .6; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+/* ── NAV brand logo subtle spin on hover ── */
+.brand-mark { transition: transform .5s ease; }
+.brand:hover .brand-mark { transform: rotate(360deg); }
+
+/* ── SECTION HEADINGS underline grow on reveal ── */
+.head h2 { position: relative; display: inline-block; }
+.head h2::after {
+  content: ""; position: absolute; bottom: -10px; left: 50%;
+  width: 0; height: 3px; border-radius: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--gold2));
+  transform: translateX(-50%); transition: width .7s ease .2s;
+}
+.head.visible h2::after { width: 60px; }
+
+/* ── PRICING table row hover ── */
+.ptable tbody tr, .rtable tbody tr {
+  transition: background .25s ease;
+}
+.ptable tbody tr:hover, .rtable tbody tr:hover {
+  background: rgba(201,168,76,.07);
+}
+
+/* ── AMOUNT IN WORDS fade in ── */
+#eq-amount-words {
+  transition: opacity .3s ease;
+  animation: fadeInWord .4s ease;
+}
+@keyframes fadeInWord {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ── TRUST BADGES (pills) hover ── */
+section .wrap span[style*="border-radius:100px"] {
+  transition: transform .25s ease, background .25s ease;
+  cursor: default;
+}
+
+/* ── FORM inputs focus glow ── */
+.fld input:focus, .fld select:focus,
+.efield input:focus, .egroup input:focus,
+.price-in input:focus {
+  box-shadow: 0 0 0 3px rgba(201,168,76,.15);
+}
+
+/* ── SUBMIT buttons success state ── */
+.enq-submit, #f-submit {
+  transition: all .3s ease;
+}
+
+/* ── REDUCE MOTION for accessibility ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+  .hl { -webkit-text-fill-color: var(--gold2); }
+}

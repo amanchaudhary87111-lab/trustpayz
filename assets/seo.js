@@ -25,9 +25,12 @@
       { "@type": "City", "name": "Noida" },
       { "@type": "City", "name": "Delhi" },
       { "@type": "City", "name": "Greater Noida" },
+      { "@type": "City", "name": "Lucknow" },
       { "@type": "City", "name": "Indirapuram" },
       { "@type": "City", "name": "Vaishali" },
-      { "@type": "City", "name": "Vasundhara" }
+      { "@type": "City", "name": "Vasundhara" },
+      { "@type": "City", "name": "Faridabad" },
+      { "@type": "City", "name": "Gurugram" }
     ],
     "location": [
       {
@@ -161,6 +164,30 @@
         "acceptedAnswer": {
           "@type": "Answer",
           "text": "You can reach TrustPayZ 24/7 on WhatsApp or call 9911312139. You can also fill the enquiry form on our website at trustpayz.in/contact.html"
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does TrustPayZ provide card swipe on POS machine and home service?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, TrustPayZ provides card swipe facility on our own POS machine at our Ghaziabad office. Home service is also available — we can come to you anywhere in Ghaziabad, Noida and Delhi NCR."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is TrustPayZ a utility or education payment portal?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. TrustPayZ is a Non-Utility and Non-Education portal. We only process personal credit card transactions such as card to bank transfer, card to card transfer and credit card bill payments."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which cities does TrustPayZ serve for credit card to cash and transfers?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "TrustPayZ provides credit card to bank transfer, credit card to credit card payment and credit card to cash services in Ghaziabad, Noida, Greater Noida, Delhi, Lucknow, Faridabad and Gurugram."
         }
       }
     ]

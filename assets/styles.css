@@ -442,7 +442,13 @@ footer a:hover { color: var(--gold2); }
    MOBILE — all fixes here
    ══════════════════════════════════════════ */
 @media (max-width: 900px) {
-  .svc { grid-template-columns: 1fr 1fr; }
+  .reviews-grid { grid-template-columns: 1fr 1fr !important; }
+}
+@media (max-width: 640px) {
+  .reviews-grid { grid-template-columns: 1fr !important; }
+  .reviews-grid .rv:last-child { grid-column: 1 !important; }
+}
+
   .scard.wide { grid-column: span 2; }
   .why-grid { grid-template-columns: 1fr 1fr; }
   .split { grid-template-columns: 1fr; gap: 32px; }

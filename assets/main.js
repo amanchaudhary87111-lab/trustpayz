@@ -334,3 +334,53 @@ async function saveToSheet(data) {
   checkboxes.forEach(c => c.addEventListener("change", toggleOther));
   toggleOther();
 })();
+
+/* ═══════════════════════════════════════════════════════════════
+   AMOUNT IN WORDS (Indian numbering system)
+   ═══════════════════════════════════════════════════════════════ */
+function numberToWords(num) {
+  if (!num || isNaN(num)) return "";
+  num = parseInt(num);
+  if (num === 0) return "Zero Rupees";
+
+  const ones = ["","One","Two","Three","Four","Five","Six","Seven","Eight","Nine",
+    "Ten","Eleven","Twelve","Thirteen","Fourteen","Fifteen","Sixteen",
+    "Seventeen","Eighteen","Nineteen"];
+  const tens = ["","","Twenty","Thirty","Forty","Fifty","Sixty","Seventy","Eighty","Ninety"];
+
+  function twoDigits(n) {
+    if (n < 20) return ones[n];
+    return tens[Math.floor(n/10)] + (n%10 ? " " + ones[n%10] : "");
+  }
+
+  function threeDigits(n) {
+    if (n < 100) return twoDigits(n);
+    return ones[Math.floor(n/100)] + " Hundred" + (n%100 ? " " + twoDigits(n%100) : "");
+  }
+
+  let result = "";
+  if (num >= 10000000) {
+    result += threeDigits(Math.floor(num/10000000)) + " Crore ";
+    num %= 10000000;
+  }
+  if (num >= 100000) {
+    result += threeDigits(Math.floor(num/100000)) + " Lakh ";
+    num %= 100000;
+  }
+  if (num >= 1000) {
+    result += threeDigits(Math.floor(num/1000)) + " Thousand ";
+    num %= 1000;
+  }
+  if (num > 0) {
+    result += threeDigits(num);
+  }
+  return "₹ " + result.trim() + " Rupees";
+}
+
+function showAmountInWords(val) {
+  const el = document.getElementById("eq-amount-words");
+  if (!el) return;
+  const cleaned = val.replace(/[^0-9]/g, "");
+  if (!cleaned) { el.textContent = ""; return; }
+  el.textContent = numberToWords(parseInt(cleaned));
+}
